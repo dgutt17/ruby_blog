@@ -1,0 +1,67 @@
+Creating a new rails app
+1. Make app
+    a. scripts: script: rails new myapp --database=postgresql
+2. Create a home Controller and home view
+    a. script: rails generate controller home index
+    b. The home controller is in app/controllers/home_controller.rb
+    c. The home view is in app/views/home/index.html.erb
+3. Make the new home controller and home view the default view for your app
+    a. go to the config folder and open the routes.rb file
+    b. underneath the get 'home/index' in the Rails.application.routes.draw method type this script:
+        i. root :to => 'home#index'
+4. run rails server
+    a. script: rails server
+        i. can be: rails s
+
+Creating Controllers and Views
+1. Create controllers and Views
+    a. script: rails generate controller [controller name]
+    b. example: rails generate contoller posts 
+    c. controller names must be plural
+2. You can find the controller in app/controllers
+3. The controller is a ruby class that you can put methods in it to send information to 
+the frontend and query the database
+4. Add an index method to the controller
+5. Create an index.html.erb file in the app/views/[controller name]
+6. In the config/routes.rb add a resource in the get "home/index" route
+    a. example: 
+        get "home/index"
+            resources :post
+    b. Post is the name of the controller
+7. You can use rake routes to see all the routes that come with a controller
+    a. script: rake routes
+8. Create a bunch of methods that correspond to the controller action name
+inside the controller class
+9. For the controller actions that have views, you can create html.erb files for them
+    a. Example: edit.html.erb
+    b. Place these html.erb files in the correct views folder
+10. To get the html.erb files to grab information from the controller
+    a. Example in html.erb:
+        <h1>Title</h1>
+        <p><=%@variableName %></p>
+    b. In the controller method create instance variables
+        i. Example:
+            Class PostsController < ApplicationController
+                def index
+                    @variableName = 'Hello World!'
+                end
+            end
+
+Creating and connecting a database and database models
+1. Gem install postgresql into your project
+    a. script: gem install pg
+2. Check the gem file to make sure you have postgresql in it
+3. Check the config/database.yml to see that postgresql is installed and check the names of the databases
+4. create databases for development, test, and production
+    a. script: createdb myapp_development, createdb myapp_test, createdb myapp_production
+5. Create your models
+    a. script: rails g model [name of model] [name of column]:[datatype]
+    b. example: rails g model category name:string
+    c. model names must be singular
+    d. can be g or generate
+6. Migrate models to database
+    a. script: rake db:migrate
+    b. This updates the databases with the new models
+7. Migrating models to heroku
+    a. git add, commit, and push to heroku first
+    b. script: heroku run rake db:migrate
