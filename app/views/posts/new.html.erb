@@ -9,7 +9,7 @@
         <%= f.text_area :body %><br />
     </p>
     <p>
-        <%= f.select :category_id, Category.all.collect {|x| [x.name, x.id]}, {:include_blank => "Select Category"}%>
+        <%= f.select :category_id, @category.collect {|x| [x.name, x.id]}, {:include_blank => "Select Category"}%>
     </p>
     <p>
         <%= f.submit "Add Post" %>

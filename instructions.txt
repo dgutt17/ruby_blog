@@ -126,3 +126,20 @@ Creating the add new post functionality and the new post interface
 4. See new.html.erb to see how a form is set up
 5. Go to application.html.erb to see how flash messages are set up
     
+Updating and deleting functionality and interface
+1. See post controller edit and update method, edit.html.erb, and show.html.erb
+
+Migrations on heroku
+1. heroku run rake db:migrate
+
+Move data from development database to heroku database
+1. heroku addons:add pgbackups
+2. Create sql dumpfile
+    a. script: PGPASSWORD: 12345 pg_dump -Fc --no-acl --no-owner -h localhost -U postgres myrubyblog_development > myruby.dump
+        i. the password is a fake password
+        ii. the password is not needed
+3. Transfer data using FileZilla
+    a. upload sql dump file to file FileZilla
+4. heroku pgbackups:restore DATABASE 'path you uploaded to on filezilla'
+5. type in name of app
+6. The heroku database should have all of the data on your development database now
