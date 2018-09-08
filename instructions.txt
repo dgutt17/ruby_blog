@@ -65,3 +65,64 @@ Creating and connecting a database and database models
 7. Migrating models to heroku
     a. git add, commit, and push to heroku first
     b. script: heroku run rake db:migrate
+8. You need a resource for models and controllers even if the there is no
+direct controller related to a model
+
+Creating Associations
+1. Checkout https://guides.rubyonrails.org/association_basics.html for examples and types
+2. Go to app/models
+3. Inside the models folder you will see the models you have made
+4. Place the relationships inside the model classes
+5. Also, make sure you make the fields in each model accessbile in the model classes
+if they are meant to be accessbile
+    a. example:
+        def permitted_params
+            params.require(:post).permit(:title, :body, :category_id, :author_id)
+        end
+    b. relationship example - see the app/model folder
+
+Entering the ruby console on the terminal and messing with the database in the ruby console
+1. script: rails console
+2. Insert new instance in the database model in the rails console
+    a. example: category = Category.new(:name => "News")
+    b. example: post = Post.create(:title => "Our First Post", :body => "This is some sample text", :category_id => 1)
+3. Retrieve all of the instances in the database
+    a. example: category = Category.all
+4. Retrieve one instance by id 
+    a. example: post = Post.find(1)
+5. Once you set a variable equal to one instance in the database then you can print out that instances fields
+    a. example: post.title 
+        "First Post"
+6. You can update an instances fields
+    a. example: post.update_attribute(:title, "this is the updated title")
+
+Displaying information from Database 
+1. In the post controller we set up our index method and our show method
+2. You use instance variables and query models to query the database
+3. index uses Model.all to find all of the instances in the database
+4. show uses Model.find(params[:id]) to find an instance by id number
+5. For the all posts page we loop through the instance variable with the .each method 
+and display it on the index view
+6. For the single post view we simply access the returned object values in the show view
+7. See posts_controller.rb, index.html.erb, and show.html.erb
+
+Creating the add new post functionality and the new post interface
+1. In the new method set post instance variable equal to Model.new
+2. For the drop down variable set the instance variable equal to Model.all
+3. In the create method example
+    def create
+        @post = Post.new(post_params)
+        if @post.save
+            redirect_to posts_path, :notice => "Your post has been saved"
+        else
+            render "new"
+        end
+
+    end
+
+    def post_params
+        params.require(:post).permit(:title, :body, :category_id)
+    end
+4. See new.html.erb to see how a form is set up
+5. Go to application.html.erb to see how flash messages are set up
+    
