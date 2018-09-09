@@ -123,14 +123,54 @@ Creating the add new post functionality and the new post interface
     def post_params
         params.require(:post).permit(:title, :body, :category_id)
     end
-4. See new.html.erb to see how a form is set up
+4. Form example:
+    <h1>Add New Post</h1>
+    <%= form_for @post do |f| %>
+        <p>
+            <%= f.label :title %><br />
+            <%= f.text_field :title %><br />
+        </p>
+        <p>
+            <%= f.label :body %><br />
+            <%= f.text_area :body %><br />
+        </p>
+        <p>
+            <%= f.select :category_id, @category.collect {|x| [x.name, x.id]}, {:include_blank => "Select Category"}%>
+        </p>
+        <p>
+            <%= f.submit "Add Post" %>
+        </p>
+
+    <% end %>
 5. Go to application.html.erb to see how flash messages are set up
     
 Updating and deleting functionality and interface
 1. See post controller edit and update method, edit.html.erb, and show.html.erb
+2. Example 
+    <h1>Edit Post</h1>
+    <%= form_for @post do |f| %>
+        <p>
+            <%= f.label :title %><br />
+            <%= f.text_field :title %><br />
+        </p>
+        <p>
+            <%= f.label :body %><br />
+            <%= f.text_area :body %><br />
+        </p>
+        <p>
+            <%= f.select :category_id, @category.collect {|x| [x.name, x.id]}, {:include_blank => "Select Category"}%>
+        </p>
+        <p>
+            <%= f.submit "Update Post" %>
+        </p>
+
+    <% end %>
+
+<%= link_to "Go Back", post_path%>
 
 Migrations on heroku
-1. heroku run rake db:migrate
+1. Update git file and push to heroku
+2. heroku run rake db:migrate
 
 Move data from development database to heroku database
 1. heroku addons:add pgbackups
@@ -138,6 +178,7 @@ Move data from development database to heroku database
     a. script: PGPASSWORD: 12345 pg_dump -Fc --no-acl --no-owner -h localhost -U postgres myrubyblog_development > myruby.dump
         i. the password is a fake password
         ii. the password is not needed
+        iii. Should use a different user than postgres - dangutt?
 3. Transfer data using FileZilla
     a. upload sql dump file to file FileZilla
 4. heroku pgbackups:restore DATABASE 'path you uploaded to on filezilla'
