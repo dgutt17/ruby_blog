@@ -80,6 +80,13 @@ if they are meant to be accessbile
             params.require(:post).permit(:title, :body, :category_id, :author_id)
         end
     b. relationship example - see the app/model folder
+6. Once you create associations between the models you can query for the associated model in the 
+model without the foreign key field in its controller
+    a. example: Post belongs to Category and Category has many Posts
+        i. Post model has category_id field
+        ii. you can grab all the posts related to a category with this query:
+            1. @category = Category.find(params[:id])
+            2. @category.posts
 
 Entering the ruby console on the terminal and messing with the database in the ruby console
 1. script: rails console
@@ -105,6 +112,7 @@ Displaying information from Database
 and display it on the index view
 6. For the single post view we simply access the returned object values in the show view
 7. See posts_controller.rb, index.html.erb, and show.html.erb
+8. See categories_controller.rb, index.html.erb, and show.html.erb
 
 Creating the add new post functionality and the new post interface
 1. In the new method set post instance variable equal to Model.new
@@ -184,3 +192,32 @@ Move data from development database to heroku database
 4. heroku pgbackups:restore DATABASE 'path you uploaded to on filezilla'
 5. type in name of app
 6. The heroku database should have all of the data on your development database now
+
+How to use Scaffolding
+1. Scaffolding creates all of the controllers, views, and models for a specific part of a webapp
+2. Script rails g scaffold Category name:string
+    i. Has to be singular
+    2. You have to put all the fields for the model
+
+ActiveAdmin setup
+1. Edit gem file
+    a. gem 'activeadmin'
+    b. gem 'devise'
+2. bundle install
+3. rails generate active_admin:install
+4. rake db:migrate
+5. enter ruby console and run:
+    a. AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
+    b. creates an admin user
+5. rails server
+
+ActiveAdmin resource creation
+1. rails generate active_admin:resource Category
+2. rails generate active_admin:resource Post
+3. In the admin resources you must put permit_params :params1, :params2, :params3
+    a. strong params
+
+ActiveAdmin Dashboard configuration
+1. look at the code in app/admin/dashboard.rb
+2. Its different then the tutorial code
+
