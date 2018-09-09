@@ -5,6 +5,7 @@ ActiveAdmin.register_page "Dashboard" do
           column :name do |post|
             link_to post.title, [:admin, post]
           end
+          column "Author", :admin_user
           column :category
           column :created_at
         end

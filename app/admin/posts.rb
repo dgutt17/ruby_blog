@@ -1,9 +1,9 @@
 ActiveAdmin.register Post do
-    permit_params :title, :body, :category_id, :admin_user
+    permit_params :title, :body, :category_id, :admin_user_id
 
     index do 
         column :title
-        column "Author", :admin_user
+        column "Author", :admin_user_id
         column :category
         column :created_at
     end
