@@ -8,4 +8,6 @@ class CategoriesController < ApplicationController
     @title = @category.name
     @posts = @category.posts # allows you to get all of the posts with that category - created by associations in the models
   end
+
+  
 end

@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
     def index
         # @posts = Post.find_by_sql("Select * from posts")
-        @posts = Post.all
+        @q = Post.ransack(params[:q])
+        @posts = @q.result(distinct: true)
     end
 
     def show

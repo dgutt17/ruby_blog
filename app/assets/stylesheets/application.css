@@ -54,8 +54,8 @@ p, ul, ol {
 	line-height: 180%;
 }
 
-ul, ol {
-}
+/* ul, ol {
+} */
 
 a {
 	text-decoration: underline;
@@ -95,8 +95,8 @@ a:hover {
 	color: #000000;
 }
 
-#logo h1, #logo p {
-}
+/* #logo h1, #logo p {
+} */
 
 #logo h1 {
 	margin-left: 30px;
@@ -113,8 +113,8 @@ a:hover {
 	color: #D43442;
 }
 
-#logo h1 span {
-}
+/* #logo h1 span {
+} */
 
 #logo p {
 	margin: 0;
@@ -212,8 +212,8 @@ a:hover {
 	text-decoration: none;
 }
 
-#menu .current_page_item a {
-}
+/* #menu .current_page_item a {
+} */
 
 /* Page */
 
@@ -292,8 +292,8 @@ a:hover {
         border-left:5px #D93544 solid;
 }
 
-.links a {
-}
+/* .links a {
+} */
 
 /* Sidebar */
 
@@ -373,8 +373,8 @@ a:hover {
 
 /* Calendar */
 
-#calendar {
-}
+/* #calendar {
+} */
 
 #calendar_wrap {
 	padding: 20px;
