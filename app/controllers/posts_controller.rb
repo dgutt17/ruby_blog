@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :body, :category_id)
+        params.require(:post).permit(:title, :body, :category_id, :admin_user_id)
     end
 
     def edit
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     end
 
     def update_params
-        params.require(:post).permit(:title, :body, :category_id)
+        params.require(:post).permit(:title, :body, :category_id, :admin_user_id)
     end
 
     def destroy 
