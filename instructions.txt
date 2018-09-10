@@ -226,3 +226,12 @@ Scaffolding
     a. Builds a scaffold
 2. rails destroy scaffold [scaffold name] [field name]:[field type]...
     a. destroys a scaffold
+
+Testing
+1. ruby -Itest test/models/post_test.rb
+
+Final Deployment to heroku
+1. Do a final git add, commit, and push to github
+2. git push heroku master
+3. heroku rake db:migrate
+4. See Move data from development database to heroku database

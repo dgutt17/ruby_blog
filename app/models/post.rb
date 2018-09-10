@@ -5,4 +5,6 @@ class Post < ApplicationRecord
     belongs_to :category
     belongs_to :admin_user
     has_many :comment, :dependent => :destroy
+    validates :title, presence: false
+    validates_length_of :body, :minimum => 0
 end
