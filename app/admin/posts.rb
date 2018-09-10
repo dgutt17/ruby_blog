@@ -3,7 +3,7 @@ ActiveAdmin.register Post do
 
     index do 
         column :title
-        column "Author", :admin_user_id
+        column "Author", :admin_user
         column :category
         column :created_at
     end

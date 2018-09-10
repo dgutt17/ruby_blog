@@ -4,4 +4,5 @@ class Post < ApplicationRecord
     end
     belongs_to :category
     belongs_to :admin_user
+    has_many :comment, :dependent => :destroy
 end

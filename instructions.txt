@@ -221,3 +221,8 @@ ActiveAdmin Dashboard configuration
 1. look at the code in app/admin/dashboard.rb
 2. Its different then the tutorial code
 
+Scaffolding
+1. rails generate scaffold [scaffold name] [field name]:[field type]...
+    a. Builds a scaffold
+2. rails destroy scaffold [scaffold name] [field name]:[field type]...
+    a. destroys a scaffold
